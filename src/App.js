@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { DropDown } from './components/form/DropDown'
+
 
 function App() {
+
+  const options = [
+    {label: "Net 1 Day", value: 'Net 1 Day'},
+    {label: "Net 7 Day", value: 'Net 7 Day'},
+    {label: "Net 14 Day", value: 'Net 14 Day'},
+    {label: "Net 30 Day", value: 'Net 30 Day'},
+  ]
+
+  const [selectedValue, setSelectedValue] = useState()
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <DropDown options={options} defaultValue={options[2].value} onSelect={setSelectedValue}/>
     </div>
   );
 }

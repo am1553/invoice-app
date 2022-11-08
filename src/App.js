@@ -8,7 +8,7 @@ function App() {
   const theme = useContext(ThemeContext)[0]
   
   return (
-    <div className={`App h-screen overflow-hidden ${theme === "light" ? "bg-desaturated-white text-black" : "bg-desaturated-black text-white"}`}>
+    <div className={`App h-screen overflow-hidden ${theme === "light" ? "bg-desaturated-white text-grey" : "bg-desaturated-black text-desaturated-grey"}`}>
       <Header />
       <Home />
     </div>

@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { DropDown } from '../../../components/form/DropDown'
 import {NewInvoiceButton} from '../../../components/ui/Buttons'
-function Header() {
+import { ThemeContext } from '../../../context/ThemeContext'
 
+
+
+function Header() {
+    const theme = useContext(ThemeContext)[0]
     const filterOptions = [{label: "Paid", value: "paid"}, {label: "Pending", value: "pending"}, {label: "Draft", value: "draft"}]
     const [selected, setSelected] = useState()
 
   return (
     <header className='flex justify-between mt-8 px-4'>
         <div className="">
-            <h2 className='text-h2 font-bold'>Invoices</h2>
+            <h2 className={`text-h2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Invoices</h2>
             <span className='text-body-l font-light'>7 invoices</span>
         </div>
 

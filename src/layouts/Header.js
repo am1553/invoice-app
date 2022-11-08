@@ -6,10 +6,11 @@ import { ThemeContext } from '../context/ThemeContext'
 
 function Header() {
     const theme = useContext(ThemeContext)[0]
+    
   return (
-    <div className={`flex justify-between ${theme === "light" ? "bg-[#373B53]" : "bg-dark-greyish-blue"}`}>
+    <div className={`flex justify-between md:w-fit md:h-screen md:flex-col ${theme === "light" ? "bg-[#373B53]" : "bg-dark-greyish-blue"} md:rounded-r-[20px]`}>
         <Logo />
-        <div className="flex gap-2">
+        <div className="flex gap-2 md:flex-col md:items-center">
             <ThemeToggle />
             <Avatar />
         </div>

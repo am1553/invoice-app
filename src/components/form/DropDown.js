@@ -4,7 +4,7 @@ import ArrowDownIcon from '../../assets/icon-arrow-down.svg'
 import useOnClickOutside from "../../hooks/useOnClickOutside"
 
 
-export const DropDown = ({options, defaultValue, onSelect, label}) => {
+export const DropDown = ({options, defaultValue, onSelect, label, class_Name}) => {
 
     const [selected, setSelected] = useState(defaultValue)
 
@@ -25,7 +25,7 @@ export const DropDown = ({options, defaultValue, onSelect, label}) => {
 
         return(
             <div 
-                className={`absolute w-fit top-20 left-0 right-0 z-10 shadow-xl rounded-md ${isOpen ? "top-14" : "top-[-100vh]"} ${theme === "light" ? "bg-white" : "bg-[#252945]"}`} 
+                className={`absolute w-fit top-20 left-0 right-0 z-10 shadow-xl rounded-md ${isOpen ? "top-14" : "top-[-100vh]"} ${theme === "light" ? "bg-white" : "bg-[#252945]"} ${class_Name}` } 
                 ref={dropDownRef}
             >
                 {
@@ -55,7 +55,7 @@ export const DropDown = ({options, defaultValue, onSelect, label}) => {
             }
             
             <button 
-                className={`h-12 min-w-[120px] flex justify-between items-center rounded-md border px-4 ${theme === "light" ? "hover:border-main-purple border-desaturated-grey" : "border-[#252945] bg-dark-greyish-blue"}`} 
+                className={`h-12 min-w-[120px] flex gap-2 justify-between items-center rounded-md border px-4 ${theme === "light" ? "hover:border-main-purple border-desaturated-grey" : "border-[#252945] bg-dark-greyish-blue"}`} 
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <h4 className={`text-h4 font-bold capitalize ${theme === "light" ? "text-black" : "text-white"}`}>

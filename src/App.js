@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { DropDown } from './components/form/DropDown'
+import { ThemeContext } from './context/ThemeContext';
 
 
 function App() {
@@ -13,10 +14,14 @@ function App() {
 
   const [selectedValue, setSelectedValue] = useState()
 
+  const toggleTheme = useContext(ThemeContext)[1]
+
+
 
 
   return (
     <div className="App">
+      <button onClick={toggleTheme}>Toggle Theme</button>
       <DropDown options={options} defaultValue={options[2].value} onSelect={setSelectedValue}/>
     </div>
   );

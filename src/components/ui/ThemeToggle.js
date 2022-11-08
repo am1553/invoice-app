@@ -8,7 +8,7 @@ function ThemeToggle() {
     const toggleTheme = useContext(ThemeContext)[1]
 
   return (
-    <button className='w-10 flex items-center justify-center' onClick={toggleTheme}>
+    <button className='w-10 flex items-center justify-center md:mb-4' onClick={toggleTheme}>
         <img src={ theme === "light" ? DarkThemeIcon : LightThemeIcon } alt="" className='pointer-events-none'/>
     </button>
   )

@@ -29,7 +29,7 @@ export const DropDown = ({options, defaultValue, onSelect}) => {
                 {
                     options.map((option, i) => {
                         return(
-                            <li key={i} className={`list-none ${i === options.length - 1 ? null : "border-b-[1px] border-desaturated-grey border-opacity-10"} h-12 flex items-center cursor-pointer`} onClick={() => handleChange(option)}>
+                            <li key={i} className={`list-none ${i === options.length - 1 ? null : theme === "light" ? "border-b-[1px] border-desaturated-grey border-opacity-50" : "border-b-[1px] border-desaturated-grey border-opacity-10"} h-12 flex items-center cursor-pointer`} onClick={() => handleChange(option)}>
                                 <h4 className={`text-h4 font-bold ml-6 ${option.value === selected ? "text-main-purple" : theme === "light" ? "text-black" : "text-white"} `}>{option.label}</h4>
                             </li>
                         )
@@ -41,7 +41,7 @@ export const DropDown = ({options, defaultValue, onSelect}) => {
     }
 
     return(
-        <div className="relative w-[240px]">
+        <div className="relative w-[240px] flex flex-col gap-2">
             <label htmlFor="" className={`${theme === "light" ? "text-sky-blue" : "text-desaturated-grey"} capitalize font-light text-body-l`}>Payment Terms</label>
 
             <button className={`h-12 w-full flex justify-between items-center rounded-md border   px-4 ${theme === "light" ? "hover:border-main-purple border-desaturated-grey" : "border-[#252945] bg-dark-greyish-blue"}`} onClick={() => setIsOpen(!isOpen)}>

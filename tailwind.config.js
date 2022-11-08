@@ -15,7 +15,7 @@ module.exports = {
       "sky-blue":"#7E88C3",
       "black":"#0C0E16",
       "red":"#EC5757",
-      "desaturated-red":"#9277FF",
+      "desaturated-red":"#FF9797",
       "desaturated-white":"#F8F8FB",
       "white":"#fff",
       "desaturated-black":"#141625"

@@ -1,7 +1,23 @@
+import { useState } from 'react';
+import { DropDown } from './components/form/DropDown'
+
+
 function App() {
+
+  const options = [
+    {label: "Net 1 Day", value: 'Net 1 Day'},
+    {label: "Net 7 Day", value: 'Net 7 Day'},
+    {label: "Net 14 Day", value: 'Net 14 Day'},
+    {label: "Net 30 Day", value: 'Net 30 Day'},
+  ]
+
+  const [selectedValue, setSelectedValue] = useState()
+
+
+
   return (
     <div className="App">
-      <h1 className="text-h1 tracking-h1-spacing">helloo</h1>
+      <DropDown options={options} defaultValue={options[2].value} onSelect={setSelectedValue}/>
     </div>
   );
 }

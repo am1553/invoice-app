@@ -4,7 +4,7 @@ import ArrowDownIcon from '../../assets/icon-arrow-down.svg'
 import useOnClickOutside from "../../hooks/useOnClickOutside"
 
 
-export const DropDown = ({options, defaultValue, onSelect}) => {
+export const DropDown = ({options, defaultValue, onSelect, label}) => {
 
     const [selected, setSelected] = useState(defaultValue)
 
@@ -23,13 +23,19 @@ export const DropDown = ({options, defaultValue, onSelect}) => {
 
     const OptionsList = () => {
 
-
         return(
-            <div className={`absolute top-20 left-0 right-0 shadow-lg rounded-md ${!isOpen ? "translate-y-[-100vh]" : "translate-y-2" && theme === "light" ? "bg-white" : "bg-[#252945]"}`} ref={dropDownRef}>
+            <div 
+                className={`absolute w-fit top-20 left-0 right-0 z-10 shadow-xl rounded-md ${isOpen ? "top-14" : "top-[-100vh]"} ${theme === "light" ? "bg-white" : "bg-[#252945]"}`} 
+                ref={dropDownRef}
+            >
                 {
                     options.map((option, i) => {
                         return(
-                            <li key={i} className={`list-none ${i === options.length - 1 ? null : theme === "light" ? "border-b-[1px] border-desaturated-grey border-opacity-50" : "border-b-[1px] border-desaturated-grey border-opacity-10"} h-12 flex items-center cursor-pointer`} onClick={() => handleChange(option)}>
+                            <li 
+                                key={i} 
+                                className={`list-none pr-12 ${i === options.length - 1 ? null : theme === "light" ? "border-b-[1px] border-desaturated-grey border-opacity-50" : "border-b-[1px] border-desaturated-grey border-opacity-10"} h-12 flex items-center cursor-pointer`} 
+                                onClick={() => handleChange(option)}
+                            >
                                 <h4 className={`text-h4 font-bold ml-6 ${option.value === selected ? "text-main-purple" : theme === "light" ? "text-black" : "text-white"} `}>{option.label}</h4>
                             </li>
                         )
@@ -41,11 +47,20 @@ export const DropDown = ({options, defaultValue, onSelect}) => {
     }
 
     return(
-        <div className="relative w-[240px] flex flex-col gap-2">
-            <label htmlFor="" className={`${theme === "light" ? "text-sky-blue" : "text-desaturated-grey"} capitalize font-light text-body-l`}>Payment Terms</label>
-
-            <button className={`h-12 w-full flex justify-between items-center rounded-md border   px-4 ${theme === "light" ? "hover:border-main-purple border-desaturated-grey" : "border-[#252945] bg-dark-greyish-blue"}`} onClick={() => setIsOpen(!isOpen)}>
-                <h4 className={`text-h4 font-bold capitalize ${theme === "light" ? "text-black" : "text-white"}`}>{selected}</h4>
+        <div className="relative w-fit flex flex-col gap-2">
+            {
+                label ? 
+                <label htmlFor="" className={`${theme === "light" ? "text-sky-blue" : "text-desaturated-grey"} capitalize font-light text-body-l`}>Payment Terms</label>
+                : null
+            }
+            
+            <button 
+                className={`h-12 min-w-[120px] flex justify-between items-center rounded-md border px-4 ${theme === "light" ? "hover:border-main-purple border-desaturated-grey" : "border-[#252945] bg-dark-greyish-blue"}`} 
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <h4 className={`text-h4 font-bold capitalize ${theme === "light" ? "text-black" : "text-white"}`}>
+                    {selected || defaultValue}
+                </h4>
                 <img src={ArrowDownIcon} alt="" />
             </button>
 

@@ -21,7 +21,6 @@ function Home() {
   return (
     <div className='flex flex-col flex-1 max-w-4xl mx-auto h-[calc(100vh-72px)]'>
       <Header />
-
     </div>
   )
 }

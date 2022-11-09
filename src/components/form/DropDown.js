@@ -25,7 +25,7 @@ export const DropDown = ({options, defaultValue, onSelect, label, class_Name}) =
 
         return(
             <div 
-                className={`absolute w-fit top-20 left-0 right-0 z-10 shadow-xl rounded-md ${isOpen ? "top-14" : "top-[-100vh]"} ${theme === "light" ? "bg-white" : "bg-[#252945]"} ${class_Name}` } 
+                className={`absolute w-fit top-20 left-0 right-0 z-10 shadow-xl rounded-md ${isOpen ? "top-14" : "left-[-100vw]"} ${theme === "light" ? "bg-white" : "bg-[#252945]"} ${class_Name}` } 
                 ref={dropDownRef}
             >
                 {

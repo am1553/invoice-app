@@ -2,10 +2,11 @@ import React, { useContext, useState } from 'react'
 import { DropDown } from '../../../components/form/DropDown'
 import {NewInvoiceButton} from '../../../components/ui/Buttons'
 import { ThemeContext } from '../../../context/ThemeContext'
-
+import {useNavigate} from 'react-router-dom'
 
 
 function Header() {
+    let navigate = useNavigate()
     const theme = useContext(ThemeContext)[0]
     const filterOptions = [{label: "Paid", value: "paid"}, {label: "Pending", value: "pending"}, {label: "Draft", value: "draft"}]
     const [selected, setSelected] = useState()
@@ -25,7 +26,7 @@ function Header() {
           <div className="max-sm:hidden">
             <DropDown options={filterOptions} defaultValue={"Filter by status"} onSelect={(option) => setSelected(option.value)} />
           </div>
-            <NewInvoiceButton />
+          <NewInvoiceButton onClick={() => navigate("/new-invoice")}/>
         </div>
     </header>
   )

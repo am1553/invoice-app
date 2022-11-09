@@ -25,7 +25,7 @@ export const DropDown = ({options, defaultValue, onSelect, label, class_Name}) =
 
         return(
             <div 
-                className={`absolute w-fit top-20 left-0 right-0 z-10 shadow-xl rounded-md ${isOpen ? "top-14" : "left-[-100vw]"} ${theme === "light" ? "bg-white" : "bg-[#252945]"} ${class_Name}` } 
+                className={`absolute w-full top-20 left-0 right-0 z-10 shadow-xl rounded-md ${isOpen ? "top-[110%]" : "left-[-100vw]"} ${theme === "light" ? "bg-white" : "bg-[#252945]"} ${class_Name}` } 
                 ref={dropDownRef}
             >
                 {
@@ -47,7 +47,7 @@ export const DropDown = ({options, defaultValue, onSelect, label, class_Name}) =
     }
 
     return(
-        <div className="relative w-fit flex flex-col gap-2">
+        <div className="relative w-full flex flex-col gap-2">
             {
                 label ? 
                 <label htmlFor="" className={`${theme === "light" ? "text-sky-blue" : "text-desaturated-grey"} capitalize font-light text-body-l`}>Payment Terms</label>

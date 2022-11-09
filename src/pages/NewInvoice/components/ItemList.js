@@ -1,18 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NewItem from './NewItem'
 import {AddNewItemButton} from '../../../components/ui/Buttons'
 
 function ItemList() {
 
+    const [itemList, setItemList] = useState([])
+
+    const handleAddItem = () => {
+        const newItemList = [...itemList, []]
+        setItemList(newItemList)
+    }
+
+    const handleItemChange = (value, i) => {
+        const itemData = [...itemList]
+        itemData[i] = value
+        setItemList(itemData)
+    }
+
+    const handleItemDelete = (i) => {
+        const itemData = [...itemList]
+        itemData.splice(i, 1)
+        console.log(itemData)
+        setItemList(itemData)
+    }
+
+    console.log(itemList)
+
     return (
         <div className='flex flex-col gap-8'>
             <h3 className='text-h3 font-bold'>Item List</h3>
-
-            <NewItem />
-            <NewItem />
-
+                {
+                    itemList.map((item, i) => {
+                        return(
+                            <NewItem key={i} onDelete={() => handleItemDelete(i)} onChange={(value) => handleItemChange(value, i)}/>
+                        )
+                    })
+                }
             <div className='mt-10 mx-auto'>
-                <AddNewItemButton />
+                <AddNewItemButton onClick={handleAddItem}/>
             </div>
         </div>
     )

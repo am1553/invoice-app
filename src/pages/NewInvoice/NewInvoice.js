@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import BillFrom from './components/BillFrom';
 import BillTo from './components/BillTo';
@@ -7,7 +7,13 @@ import { PurpleButton, PrimaryDarkGreyButton, PrimaryGreyButton } from '../../co
 import {useNavigate} from 'react-router-dom'
 
 function NewInvoice() {
+
     let navigate = useNavigate()
+    const [billFrom, setBillFrom] = useState({})
+    const [billTo, setBillTo] = useState({})
+    const [itemList, setItemList] = useState([])
+
+    console.log(billTo)
 
     return (
         <div className='flex gap-8 flex-col'>
@@ -19,8 +25,8 @@ function NewInvoice() {
             </header>
             <main className='px-8 flex flex-col gap-8'>
                 <h1 className='text-h2 font-bold'>New Invoice</h1>
-                <BillFrom />
-                <BillTo />
+                <BillFrom setBillFrom={setBillFrom}/>
+                <BillTo setBillTo={setBillTo}/>
                 <ItemList />
             </main>
 

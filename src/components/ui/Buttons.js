@@ -64,9 +64,9 @@ export const DeleteButton = () => {
     )
 }
 
-export const AddNewItemButton = () => {
+export const AddNewItemButton = ({onClick}) => {
     return(
-        <button className='h-12 w-[80vw] max-w-xs transition-colors rounded-full bg-sky-blue bg-opacity-10 hover:bg-opacity-30'>
+        <button onClick={onClick} className='h-12 w-[80vw] max-w-xs transition-colors rounded-full bg-sky-blue bg-opacity-10 hover:bg-opacity-30'>
             <h4 className='text-h4 font-bold text-sky-blue'>+ Add New Item</h4>
         </button>
     )

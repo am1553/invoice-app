@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NewItem from './NewItem'
 import {AddNewItemButton} from '../../../components/ui/Buttons'
 
-function ItemList() {
-
-    const [itemList, setItemList] = useState([])
+function ItemList({setItemList, itemList}) {
 
     const handleAddItem = () => {
         const newItemList = [...itemList, []]
@@ -24,7 +22,6 @@ function ItemList() {
         setItemList(itemData)
     }
 
-    console.log(itemList)
 
     return (
         <div className='flex flex-col gap-8'>

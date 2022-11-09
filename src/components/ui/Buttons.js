@@ -22,9 +22,9 @@ export const NewInvoiceButton = ({onClick}) => {
     )
 }
 
-export const PurpleButton = ({text}) => {
+export const PurpleButton = ({text, onClick}) => {
     return(
-        <button className='h-12 w-fit min-w-[80px] px-4 bg-main-purple hover:bg-desaturated-purple transition-colors rounded-full'>
+        <button onClick={onClick} className='h-12 w-fit min-w-[80px] px-4 bg-main-purple hover:bg-desaturated-purple transition-colors rounded-full'>
             <h4 className='text-h4 font-bold text-white'>{text}</h4>
         </button>
     )

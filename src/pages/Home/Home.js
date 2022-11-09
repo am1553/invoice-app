@@ -2,11 +2,16 @@ import React, { useContext } from 'react'
 import Header from './components/Header'
 import NothingHereImage from '../../assets/illustration-empty.svg'
 import { ThemeContext } from '../../context/ThemeContext'
+import {useSelector} from 'react-redux'
+
+
 function Home() {
   const theme = useContext(ThemeContext)[0]
 
-  const NoInvoices = () => {
+  const invoice = useSelector((state) => state.invoice)
+  console.log(invoice.length)
 
+  const NoInvoices = () => {
     return(
       <div className="flex flex-col gap-4 items-center justify-center my-auto">
         <img src={ NothingHereImage } alt="" />
@@ -21,6 +26,9 @@ function Home() {
   return (
     <div className='flex flex-col flex-1 max-w-4xl mx-auto h-[calc(100vh-72px)]'>
       <Header />
+      {
+        invoice.length < 1 ? <NoInvoices /> : null
+      }
     </div>
   )
 }

@@ -5,15 +5,24 @@ import BillTo from './components/BillTo';
 import ItemList from './components/ItemList';
 import { PurpleButton, PrimaryDarkGreyButton, PrimaryGreyButton } from '../../components/ui/Buttons';
 import {useNavigate} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import {addInvoice} from '../../features/invoice/invoiceSlice'
 
 function NewInvoice() {
-
+    const dispatch = useDispatch()
     let navigate = useNavigate()
     const [billFrom, setBillFrom] = useState({})
     const [billTo, setBillTo] = useState({})
     const [itemList, setItemList] = useState([])
-
-    console.log(billTo)
+    
+    const handleAddInvoice = () => {
+        const invoiceData = {
+            bill_from: billFrom,
+            bill_to: billTo,
+            item_list: itemList
+        }
+        dispatch(addInvoice(invoiceData))
+    }
 
     return (
         <div className='flex gap-8 flex-col'>
@@ -27,13 +36,13 @@ function NewInvoice() {
                 <h1 className='text-h2 font-bold'>New Invoice</h1>
                 <BillFrom setBillFrom={setBillFrom}/>
                 <BillTo setBillTo={setBillTo}/>
-                <ItemList />
+                <ItemList itemList={itemList} setItemList={setItemList}/>
             </main>
 
             <footer className='p-4 mt-24 flex gap-2 justify-center bg-[#1E2139]'>
                 <PrimaryDarkGreyButton text={"Discard"}/>
                 <PrimaryGreyButton text={"Save as Draft"}/>
-                <PurpleButton text={"Save & Send"}/>
+                <PurpleButton text={"Save & Send"} onClick={handleAddInvoice}/>
             </footer>
         </div>
     )

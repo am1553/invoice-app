@@ -11,7 +11,7 @@ function App() {
   const theme = useContext(ThemeContext)[0]
   return (
     <Provider store={store}>
-      <div className={`App min-h-screen md:flex ${theme === "light" ? "bg-desaturated-white text-grey" : "bg-desaturated-black text-desaturated-grey"}`}>
+      <div className={`App h-screen md:flex ${theme === "light" ? "bg-desaturated-white text-grey" : "bg-desaturated-black text-desaturated-grey"}`}>
         <Header />
         <Router>
           <Routes>

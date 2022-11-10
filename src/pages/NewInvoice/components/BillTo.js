@@ -47,14 +47,23 @@ function BillTo({setBillTo}) {
         <TextField label={"Client's Name"} onChange={(e) => setClientsName(e.target.value)} />
         <TextField label={"Client's Email"} onChange={(e) => setClientsEmail(e.target.value)} />
         <TextField label={"Street Address"} onChange={(e) => setStreetAddress(e.target.value)} />
-        <div className="grid grid-cols-2 gap-4">
+
+        <div className="grid max-sm:grid-cols-2 sm:grid-cols-3 gap-4">
             <TextField label={"City"} onChange={(e) => setCity(e.target.value)} />
             <TextField label={"Post Code"} onChange={(e) => setPostCode(e.target.value)} />
+            <div className="max-sm:hidden">
+              <TextField label={"Country"} onChange={(e) => setCountry(e.target.value)} />
+            </div>
         </div>
-        <TextField label={"Country"} onChange={(e) => setCountry(e.target.value)} />
-        <DateDropDown label={"Invoice Date"} onChange={setInvoiceDate}/>
+        <div className="sm:hidden">
+          <TextField label={"Country"} onChange={(e) => setCountry(e.target.value)} />
+        </div>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <DateDropDown label={"Invoice Date"} onChange={setInvoiceDate}/>
+          <DropDown label={"Payment Terms"} onSelect={setPaymentTerms} options={paymentTermOptions} defaultValue={"Choose a payment term"}/>
+        </div>
 
-        <DropDown label={"Payment Terms"} onSelect={setPaymentTerms} options={paymentTermOptions} defaultValue={"Choose a payment term"}/>
+
         <TextField label={"Project Description"} onChange={(e) => setProjectDescription(e.target.value)} />
     </div>
   )

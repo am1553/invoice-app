@@ -8,17 +8,18 @@ function InvoiceCard({data}) {
 
 
   return (
-    <div className={`mx-4 ${theme === "light" ? "bg-white" : "bg-dark-greyish-blue"} rounded-md p-4 flex flex-col gap-4`}>
+    <div className={`mx-4 ${theme === "light" ? "bg-white" : "bg-dark-greyish-blue"} rounded-md p-4 flex flex-col gap-4 sm:grid sm:grid-cols-2 sm:items-center`}>
         
-        <header className='flex justify-between'>
-            <h4 className={`text-h4 font-bold ${theme === "light" ? "text-black" : "text-white"}`}><span className='text-sky-blue'># </span>{data.id}</h4>
-            <span className="text-body-l">{data.clientName}</span>
+        <header className='flex justify-between sm:grid-cols-3 sm:justify-start sm:gap-4 md:gap-6 lg:gap-10'>
+            <h4 className={`text-h4 w-16 font-bold ${theme === "light" ? "text-black" : "text-white"}`}><span className='text-sky-blue'># </span>{data.id}</h4>
+            <span className="text-body-l max-sm:hidden sm:w-24">{dueDate}</span>
+            <span className="text-body-l sm:w-30">{data.clientName}</span>
         </header>
 
-        <main className='flex justify-between items-center'>
+        <main className='flex justify-between sm:items-center '>
 
-            <div className="">
-                <span className="text-body-l">{dueDate}</span>
+            <div className="sm:grid sm:grid-cols-2 items-center">
+                <span className="text-body-l sm:hidden">{dueDate}</span>
                 <h3 className={`text-h3 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>£{data.total.toFixed(2)}</h3>
             </div>
 

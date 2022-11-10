@@ -26,12 +26,14 @@ function Header() {
         </div>
 
         <div className="flex items-center max-sm:gap-2 sm:gap-4 md:gap-8 xl:gap-10">
+
           <div className="sm:hidden">
             <DropDown options={filterOptions} defaultValue={"Filter"} onSelect={(option) => setSelected(option.value)} />
           </div>
           <div className="max-sm:hidden">
             <DropDown options={filterOptions} defaultValue={"Filter by status"} onSelect={(option) => setSelected(option.value)} />
           </div>
+          
           <div className="sm:hidden">
             <NewInvoiceButton onClick={() => navigate("/new-invoice")}/>
           </div>

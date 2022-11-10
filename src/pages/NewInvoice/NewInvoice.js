@@ -3,7 +3,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import BillFrom from './components/BillFrom';
 import BillTo from './components/BillTo';
 import ItemList from './components/ItemList';
-import { PurpleButton, PrimaryDarkGreyButton, PrimaryGreyButton } from '../../components/ui/Buttons';
+import { PurpleButton, PrimaryDarkGreyButton, PrimaryGreyButton, GreyButton, SmallButton } from '../../components/ui/Buttons';
 import {useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {addInvoice} from '../../features/invoice/invoiceSlice'
@@ -44,10 +44,12 @@ function NewInvoice() {
                 <ItemList itemList={itemList} setItemList={setItemList}/>
             </main>
 
-            <footer className='p-4 mt-14 flex gap-2 justify-center bg-[#1E2139]'>
-                <PrimaryDarkGreyButton text={"Discard"}/>
-                <PrimaryGreyButton text={"Save as Draft"}/>
-                <PurpleButton text={"Save & Send"} onClick={handleAddInvoice}/>
+            <footer className={`p-6 justify-between mt-14 flex gap-2 shadow-[10px_30px_40px_20px_#00000050] ${theme === "light" ? "bg-white" : "bg-[#1E2139]"}`}>
+                <SmallButton text={"Discard"}/>
+                <div className="flex gap-4">
+                    <GreyButton text={"Save as Draft"}/>
+                    <PurpleButton text={"Save & Send"} onClick={handleAddInvoice} />
+                </div>
             </footer>
         </div>
     )

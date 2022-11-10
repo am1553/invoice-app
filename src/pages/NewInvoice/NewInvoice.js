@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import BillFrom from './components/BillFrom';
 import BillTo from './components/BillTo';
@@ -7,8 +7,11 @@ import { PurpleButton, PrimaryDarkGreyButton, PrimaryGreyButton } from '../../co
 import {useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {addInvoice} from '../../features/invoice/invoiceSlice'
+import { ThemeContext } from '../../context/ThemeContext';
 
 function NewInvoice() {
+    const theme = useContext(ThemeContext)[0]
+
     const dispatch = useDispatch()
     let navigate = useNavigate()
     const [billFrom, setBillFrom] = useState({})
@@ -25,21 +28,23 @@ function NewInvoice() {
     }
 
     return (
-        <div className='flex gap-8 flex-col'>
-            <header className='px-8 mt-4'>
+        <div 
+            className={`flex sm:h-[calc(100vh-72px)] md:h-screen overflow-y-scroll gap-8 flex-col pt-14 ${theme === "light" ? "bg-white" : "bg-desaturated-black"}`}
+        >
+            <header className='px-8 mt-4 sm:hidden'>
                 <button className='flex items-center' onClick={() => navigate('/')}>
                     <ChevronLeftIcon className='text-main-purple pointer-events-none pr-2'/>
                     <h4 className='text-h4 font-bold pointer-events-none ml-4'>Back to Home</h4>
                 </button>
             </header>
-            <main className='px-8 flex flex-col gap-8'>
+            <main className={`px-8 flex flex-col gap-8 ${theme === "light" ? "text-black" : "text-white"}`}>
                 <h1 className='text-h2 font-bold'>New Invoice</h1>
                 <BillFrom setBillFrom={setBillFrom}/>
                 <BillTo setBillTo={setBillTo}/>
                 <ItemList itemList={itemList} setItemList={setItemList}/>
             </main>
 
-            <footer className='p-4 mt-24 flex gap-2 justify-center bg-[#1E2139]'>
+            <footer className='p-4 mt-14 flex gap-2 justify-center bg-[#1E2139]'>
                 <PrimaryDarkGreyButton text={"Discard"}/>
                 <PrimaryGreyButton text={"Save as Draft"}/>
                 <PurpleButton text={"Save & Send"} onClick={handleAddInvoice}/>

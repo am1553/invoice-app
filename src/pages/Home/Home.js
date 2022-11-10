@@ -9,7 +9,7 @@ function Home() {
   const theme = useContext(ThemeContext)[0]
 
   const invoice = useSelector((state) => state.invoice)
-  console.log(invoice.length)
+
 
   const NoInvoices = () => {
     return(

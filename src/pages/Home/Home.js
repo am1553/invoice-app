@@ -3,6 +3,7 @@ import Header from './components/Header'
 import NothingHereImage from '../../assets/illustration-empty.svg'
 import { ThemeContext } from '../../context/ThemeContext'
 import {useSelector} from 'react-redux'
+import InvoiceCardContainer from './components/InvoiceCardContainer'
 
 
 function Home() {
@@ -27,7 +28,7 @@ function Home() {
     <div className='flex flex-col flex-1 max-w-4xl mx-auto h-[calc(100vh-72px)]'>
       <Header />
       {
-        invoice.length < 1 ? <NoInvoices /> : null
+        invoice.length < 1 ? <NoInvoices /> : <InvoiceCardContainer />
       }
     </div>
   )

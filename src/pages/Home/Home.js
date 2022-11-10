@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Header from './components/Header'
 import NothingHereImage from '../../assets/illustration-empty.svg'
 import { ThemeContext } from '../../context/ThemeContext'
@@ -8,9 +8,8 @@ import InvoiceCardContainer from './components/InvoiceCardContainer'
 
 function Home() {
   const theme = useContext(ThemeContext)[0]
-
   const invoice = useSelector((state) => state.invoice)
-
+  const [filter, setFilter] = useState(null)
 
   const NoInvoices = () => {
     return(
@@ -26,9 +25,9 @@ function Home() {
 
   return (
     <div className='flex flex-col flex-1 max-w-4xl mx-auto h-[calc(100vh-72px)]'>
-      <Header />
+      <Header setFilter={(option) => setFilter(option)}/>
       {
-        invoice.length < 1 ? <NoInvoices /> : <InvoiceCardContainer />
+        invoice.length < 1 ? <NoInvoices /> : <InvoiceCardContainer filter={filter} />
       }
     </div>
   )

@@ -6,7 +6,8 @@ import {useNavigate} from 'react-router-dom'
 import NewInvoice from '../../NewInvoice/NewInvoice'
 import Modal from '../../../Modal'
 import { useSelector } from 'react-redux'
-function Header() {
+
+function Header({setFilter}) {
 
     const invoices = useSelector(state => state.invoice)
 
@@ -14,9 +15,8 @@ function Header() {
     let navigate = useNavigate()
     const theme = useContext(ThemeContext)[0]
     const filterOptions = [{label: "Paid", value: "paid"}, {label: "Pending", value: "pending"}, {label: "Draft", value: "draft"}]
-    const [selected, setSelected] = useState()
-
     const [modal, setModal] = useState(false)
+
   return (
     <header className='flex justify-between mt-8 px-4'>
         <div className="">
@@ -28,10 +28,10 @@ function Header() {
         <div className="flex items-center max-sm:gap-2 sm:gap-4 md:gap-8 xl:gap-10">
 
           <div className="sm:hidden">
-            <DropDown options={filterOptions} defaultValue={"Filter"} onSelect={(option) => setSelected(option.value)} />
+            <DropDown options={filterOptions} defaultValue={"Filter"} onSelect={(option) => setFilter(option)} />
           </div>
           <div className="max-sm:hidden">
-            <DropDown options={filterOptions} defaultValue={"Filter by status"} onSelect={(option) => setSelected(option.value)} />
+            <DropDown options={filterOptions} defaultValue={"Filter by status"} onSelect={(option) => setFilter(option)} />
           </div>
           
           <div className="sm:hidden">

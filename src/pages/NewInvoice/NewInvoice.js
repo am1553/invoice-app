@@ -3,7 +3,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import BillFrom from './components/BillFrom';
 import BillTo from './components/BillTo';
 import ItemList from './components/ItemList';
-import { PurpleButton, PrimaryDarkGreyButton, PrimaryGreyButton, GreyButton, SmallButton } from '../../components/ui/Buttons';
+import { PurpleButton, GreyButton, SmallButton } from '../../components/ui/Buttons';
 import {useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {addInvoice} from '../../features/invoice/invoiceSlice'
@@ -29,7 +29,7 @@ function NewInvoice() {
 
     return (
         <div 
-            className={`flex sm:h-[calc(100vh-72px)] md:h-screen overflow-y-scroll gap-8 flex-col pt-14 ${theme === "light" ? "bg-white" : "bg-desaturated-black"}`}
+            className={`lg:rounded-r-2xl flex sm:h-[calc(100vh-72px)] md:h-screen overflow-y-scroll gap-8 flex-col pt-14 ${theme === "light" ? "bg-white" : "bg-desaturated-black"}`}
         >
             <header className='px-8 mt-4 sm:hidden'>
                 <button className='flex items-center' onClick={() => navigate('/')}>

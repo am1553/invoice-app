@@ -12,13 +12,15 @@ export const DateDropDown = ({label, onChange}) => {
     const [startDate, setStartDate] = useState(new Date())
 
     useEffect(() => {
-        onChange(JSON.stringify(startDate))
+        onChange(startDate)
     }, [startDate])
+
     return(
         <div className="">
             <label htmlFor="" className={`text-body-l font-light ${theme === "light" ? "text-sky-blue" : "text-desaturated-grey"} capitalize`}>{label}</label>
             <div className={`relative outline-none ${theme}`}>
                 <DatePicker 
+                    setDefaultLocale="gmt"
                     selected={startDate} 
                     onChange={(date) => setStartDate(date)}
                     dateFormat={"dd/MM/yyyy"}

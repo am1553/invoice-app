@@ -8,8 +8,6 @@ import Modal from '../../../Modal'
 
 function Header({setFilter}) {
 
-
-
     let navigate = useNavigate()
     const theme = useContext(ThemeContext)[0]
     const filterOptions = [{label: "Paid", value: "paid"}, {label: "Pending", value: "pending"}, {label: "Draft", value: "draft"}]

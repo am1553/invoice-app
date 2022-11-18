@@ -22,12 +22,14 @@ export const InvoicesProvider = ({children}) => {
 
     // get single invoice
 
+    const getInvoice = (id) => {
+        return allInvoices.filter(invoice => invoice.id === id)
+    }
+
     // create an invoice
     const createInvoice = async (data) => {
-        console.log(data)
         await addDoc(invoicesCollectionRef, {...data})
         getInvoices()
-        console.log('sent')
     }
 
     // update invoice
@@ -35,7 +37,7 @@ export const InvoicesProvider = ({children}) => {
     // delete invoice
 
     return(
-        <InvoicesContext.Provider value={{all_invoices: allInvoices, create_invoice: createInvoice}}>
+        <InvoicesContext.Provider value={{all_invoices: allInvoices, create_invoice: createInvoice, get_invoice: getInvoice}}>
             {children}
         </InvoicesContext.Provider>
     )

@@ -59,3 +59,11 @@ export const AddNewItemButton = ({onClick}) => {
         </button>
     )
 }
+
+export const DestructiveButton = ({onClick, text}) => {
+    return(
+        <button onClick={onClick} className="bg-red max-w-[8rem] w-full h-12 rounded-full hover:bg-desaturated-red transition-colors">
+            <h4 className='text-white text-h4 font-bold'>{text}</h4>
+        </button>
+    )
+}

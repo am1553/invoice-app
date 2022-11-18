@@ -12,7 +12,7 @@ import { InvoicesContext } from '../../context/InvoicesContext';
 function NewInvoice({onClose}) {
     const theme = useContext(ThemeContext)[0]
     const create_invoice = useContext(InvoicesContext).create_invoice
-
+    
     function makeid(length) {
         let result           = '';
         let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

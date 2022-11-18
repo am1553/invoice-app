@@ -3,6 +3,8 @@ import {TextField} from '../../../components/form/TextField'
 import {DateDropDown} from '../../../components/form/DateDropDown'
 import { DropDown } from '../../../components/form/DropDown'
 import { paymentTermOptions } from '../../../constants/payment-options'
+import moment from 'moment'
+
 function BillTo({setBillTo}) {
 
   const [clientsName, setClientsName] = useState("")
@@ -28,17 +30,8 @@ function BillTo({setBillTo}) {
       project_description: projectDescription
     })
   }, [
-    clientsName,
-    clientsEmail,
-    streetAddress,
-    city,
-    postCode,
-    country,
-    invoiceDate,
-    paymentTerms,
-    projectDescription
+    clientsName, clientsEmail, streetAddress, city, postCode, country, invoiceDate, paymentTerms, projectDescription
   ])
-
 
   return (
     <div className='flex flex-col gap-4'>

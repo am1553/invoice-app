@@ -5,11 +5,9 @@ import { ThemeContext } from '../../../context/ThemeContext'
 import {useNavigate} from 'react-router-dom'
 import NewInvoice from '../../NewInvoice/NewInvoice'
 import Modal from '../../../Modal'
-import { useSelector } from 'react-redux'
 
 function Header({setFilter}) {
 
-    const invoices = useSelector(state => state.invoice)
 
 
     let navigate = useNavigate()
@@ -19,11 +17,11 @@ function Header({setFilter}) {
 
   return (
     <header className='flex justify-between mt-8 px-4'>
-        <div className="">
+        {/* <div className="">
             <h2 className={`text-h2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Invoices</h2>
             <span className='text-body-l font-light sm:hidden'>{invoices.length} invoices</span>
             <span className='text-body-l font-light max-sm:hidden'>There are {invoices.length} total invoices</span>
-        </div>
+        </div> */}
 
         <div className="flex items-center max-sm:gap-2 sm:gap-4 md:gap-8 xl:gap-10">
 
@@ -43,7 +41,7 @@ function Header({setFilter}) {
         </div>
 
         <Modal open={modal} onClose={() => setModal(false)}>
-          <NewInvoice />
+          <NewInvoice onClose={() => setModal(false)}/>
         </Modal>
     </header>
   )

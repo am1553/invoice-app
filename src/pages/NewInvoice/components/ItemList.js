@@ -21,7 +21,7 @@ function ItemList({setItemList, itemList}) {
         console.log(itemData)
         setItemList(itemData)
     }
-
+    
 
     return (
         <div className='flex flex-col gap-8'>

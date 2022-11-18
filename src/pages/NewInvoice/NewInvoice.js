@@ -6,22 +6,56 @@ import ItemList from './components/ItemList';
 import { PurpleButton, GreyButton, SmallButton } from '../../components/ui/Buttons';
 import {useNavigate} from 'react-router-dom'
 import { ThemeContext } from '../../context/ThemeContext';
+import { InvoicesContext } from '../../context/InvoicesContext';
 
-function NewInvoice() {
+
+function NewInvoice({onClose}) {
     const theme = useContext(ThemeContext)[0]
+    const create_invoice = useContext(InvoicesContext).create_invoice
 
+    function makeid(length) {
+        let result           = '';
+        let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+    
     let navigate = useNavigate()
     const [billFrom, setBillFrom] = useState({})
     const [billTo, setBillTo] = useState({})
     const [itemList, setItemList] = useState([])
     
     const handleAddInvoice = () => {
-        const invoiceData = {
-            bill_from: billFrom,
-            bill_to: billTo,
-            item_list: itemList
+        const calcTotal = () => {
+            let total = 0;
+            itemList.map(item => total = total + item.total)
+            return total
         }
+        const data = {
+            client_address: {
+                city: billTo.city,
+                country: billTo.country,
+                post_code: billTo.post_code,
+                street: billTo.street_address
+            },
+            payment_due: billTo.invoice_date,
+            payment_terms: billTo.payment_terms,
+            sender_address: {...billFrom},
+            client_email: billTo.client_email,
+            client_name: billTo.client_name,
+            description: billTo.project_description,
+            id: makeid(6),
+            items: itemList,
+            status: "draft",
+            total: calcTotal()
+        }
+        create_invoice(data)
+        onClose()
     }
+
 
     return (
         <div 

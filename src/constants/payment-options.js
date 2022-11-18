@@ -1,6 +1,6 @@
 export const paymentTermOptions = [
-    {label: 'Net 1 Day', value: 'net-1-day'},
-    {label: 'Net 7 Day', value: 'net-7-day'},
-    {label: 'Net 14 Day', value: 'net-14-day'},
-    {label: 'Net 30 Day', value: 'net-30-day'}
+    {label: 'Net 1 Day', value: 1},
+    {label: 'Net 7 Day', value: 7},
+    {label: 'Net 14 Day', value: 14},
+    {label: 'Net 30 Day', value: 30}
 ]

@@ -3,9 +3,11 @@ import Header from './components/Header'
 import NothingHereImage from '../../assets/illustration-empty.svg'
 import { ThemeContext } from '../../context/ThemeContext'
 import InvoiceCardContainer from './components/InvoiceCardContainer'
+import { InvoicesContext } from '../../context/InvoicesContext'
 
 
 function Home() {
+  const allInvoices = useContext(InvoicesContext).all_invoices
   const theme = useContext(ThemeContext)[0]
   const [filter, setFilter] = useState(null)
 
@@ -24,9 +26,9 @@ function Home() {
   return (
     <div className='flex flex-col flex-1 max-w-4xl mx-auto h-[calc(100vh-72px)]'>
       <Header setFilter={(option) => setFilter(option)}/>
-      {/* {
-        invoice.length < 1 ? <NoInvoices /> : <InvoiceCardContainer filter={filter} />
-      } */}
+      {
+        allInvoices.length < 1 ? <NoInvoices /> : <InvoiceCardContainer all_invoices={allInvoices} filter={filter} />
+      }
     </div>
   )
 }

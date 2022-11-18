@@ -41,7 +41,7 @@ function Header({setFilter}) {
         </div>
 
         <Modal open={modal} onClose={() => setModal(false)}>
-          <NewInvoice />
+          <NewInvoice onClose={() => setModal(false)}/>
         </Modal>
     </header>
   )

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Label } from '../../../components/form/Label'
 import { NumberInput } from '../../../components/form/NumberInput'
 import { TextField } from '../../../components/form/TextField'
@@ -15,6 +15,8 @@ function NewItem({onChange, onDelete}) {
         setTotal(price * quantity)
     }, [price, quantity])
 
+
+
     useEffect(() => {
         const itemData = {
             item_name: itemName,
@@ -28,7 +30,6 @@ function NewItem({onChange, onDelete}) {
     quantity,
     price,
     total])
-
 
   return (
     <div className='flex flex-col gap-4'>

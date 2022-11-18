@@ -5,14 +5,11 @@ import BillTo from './components/BillTo';
 import ItemList from './components/ItemList';
 import { PurpleButton, GreyButton, SmallButton } from '../../components/ui/Buttons';
 import {useNavigate} from 'react-router-dom'
-import {useDispatch} from 'react-redux'
-import {addInvoice} from '../../features/invoice/invoiceSlice'
 import { ThemeContext } from '../../context/ThemeContext';
 
 function NewInvoice() {
     const theme = useContext(ThemeContext)[0]
 
-    const dispatch = useDispatch()
     let navigate = useNavigate()
     const [billFrom, setBillFrom] = useState({})
     const [billTo, setBillTo] = useState({})
@@ -24,7 +21,6 @@ function NewInvoice() {
             bill_to: billTo,
             item_list: itemList
         }
-        dispatch(addInvoice(invoiceData))
     }
 
     return (

@@ -12,7 +12,7 @@ function App() {
 
   return (
     <InvoicesProvider>
-        <div className={`App h-screen md:flex ${theme === "light" ? "bg-desaturated-white text-grey" : "bg-desaturated-black text-desaturated-grey"}`}>
+        <div className={`App md:h-screen md:flex ${theme === "light" ? "bg-desaturated-white text-grey" : "bg-desaturated-black text-desaturated-grey"}`}>
           <Router>
             <Header />
               <Routes>

@@ -14,18 +14,22 @@ function ViewInvoice() {
 
   return (
     invoice ? 
-    <div className='max-w-4xl pt-14 h-full w-full'>
-        <div className="px-4">
-            <header className=''>
-                <button onClick={() => navigate('/')} className="flex items-center gap-4">
-                    <img src={ArrowLeft} alt="" />
-                    <h4 className={`text-h4 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Go Back</h4>
-                </button>
-            </header>
+    <div className='max-w-4xl pt-14 h-full w-full flex flex-col gap-14 lg:mx-auto'>
+        
+        <header className='px-4'>
+            <button onClick={() => navigate('/')} className="flex items-center gap-4">
+                <img src={ArrowLeft} alt="" />
+                <h4 className={`text-h4 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Go Back</h4>
+            </button>
+        </header>
+
+        <div className="px-4 h-full flex flex-col gap-6 overflow-y-scroll">
             <StatusCard invoice={invoice}/>
             <InvoiceDetails invoice={invoice}/>
         </div>
-        <ActionButtons />
+        <div className="md:hidden">
+            <ActionButtons />
+        </div>
     </div> 
     : null
   )

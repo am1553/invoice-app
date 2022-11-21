@@ -31,7 +31,8 @@ export const InvoicesProvider = ({children}) => {
 
     // update invoice
     const updateInvoice = async (collection_id, data) => {
-
+        const invoiceDoc = doc(db, "invoices", collection_id)
+        await updateDoc(invoiceDoc, data)
     }
 
     // mark as paid
@@ -56,7 +57,8 @@ export const InvoicesProvider = ({children}) => {
                     get_invoice: getInvoice,
                     get_invoices: getInvoices,
                     delete_invoice: deleteInvoice,
-                    mark_as_paid: markAsPaid
+                    mark_as_paid: markAsPaid,
+                    update_invoice: updateInvoice
                 }
             }
         >

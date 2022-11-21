@@ -107,7 +107,7 @@ function NewInvoice({onClose}) {
             </main>
 
             <footer className={`p-6 justify-between mt-14 flex gap-2 shadow-[10px_30px_40px_20px_#00000050] ${theme === "light" ? "bg-white" : "bg-[#1E2139]"}`}>
-                <SmallButton text={"Discard"} onClick={() => navigate('/')}/>
+                <SmallButton text={"Discard"} onClick={() => {navigate('/'); onClose()}}/>
                 <div className="flex gap-4">
                     <GreyButton text={"Save as Draft"} onClick={handleAddInvoiceDraft}/>
                     <PurpleButton text={"Save & Send"}  onClick={handleAddInvoicePending}/>

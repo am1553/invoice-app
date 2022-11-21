@@ -10,7 +10,7 @@ function Items({invoice}) {
         {
             invoice.items.map((item, i) => {
                 return(
-                    <div className="">
+                    <div className="" key={i}>
                         <div className={`${theme === "light" ?"bg-desaturated-white" : "bg-greyish-blue" } p-6 flex justify-between items-center`}>
                             <div className="" key={i}>
                                 <h4 className={`text-h2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>{item.item_name}</h4>

@@ -5,11 +5,12 @@ import { TextField } from '../../../components/form/TextField'
 import BinIcon from '../../../assets/icon-delete.svg'
 
 
-function NewItem({onChange, onDelete}) {
-    const [itemName, setItemName] = useState("")
-    const [quantity, setQuantity] = useState(0)
-    const [price, setPrice] = useState(0)
-    const [total, setTotal] = useState(0)
+function NewItem({onChange, onDelete, item}) {
+    console.log(item)
+    const [itemName, setItemName] = useState(item.item_name)
+    const [quantity, setQuantity] = useState(item.quantity)
+    const [price, setPrice] = useState(item.price)
+    const [total, setTotal] = useState(item.total)
 
     useEffect(() => {
         setTotal(price * quantity)
@@ -33,23 +34,23 @@ function NewItem({onChange, onDelete}) {
 
   return (
     <div className='flex flex-col gap-4'>
-        <TextField label={"Item Name"} onChange={e => setItemName(e.target.value)}/>
+        <TextField defaultValue={itemName} label={"Item Name"} onChange={e => setItemName(e.target.value)}/>
 
         <div className="flex gap-4">
             <div className="">
                 <Label label={"Qty."}/>
-                <NumberInput onChange={e => setQuantity(e.target.value)}/>
+                <NumberInput noDecimal={true} defaultValue={quantity} onChange={e => setQuantity(e.target.value)}/>
             </div>
 
             <div className="">
                 <Label label={"Price"}/>
-                <NumberInput onChange={e => setPrice(e.target.value)}/>
+                <NumberInput defaultValue={price} onChange={e => setPrice(e.target.value)}/>
             </div>
 
             <div className="">
                 <Label label={"Total"}/>
                 <input 
-                    type="number" 
+                    type="number"
                     value={total.toFixed(2)}
                     readOnly
                     className={`h-12 w-full text-h4 font-bold bg-white bg-opacity-0 outline-none`}/>

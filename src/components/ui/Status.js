@@ -5,7 +5,7 @@ function Status({status}) {
     const theme = useContext(ThemeContext)[0]
 
     const Circle = ({background}) => {
-      console.log(background)
+
       return(
         <div 
         className={

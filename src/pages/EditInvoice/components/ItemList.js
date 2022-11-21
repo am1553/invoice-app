@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NewItem from './NewItem'
 import {AddNewItemButton} from '../../../components/ui/Buttons'
 
-function ItemList({setItemList, itemList}) {
+function ItemList({setItemList, itemList, invoice}) {
+
 
     const handleAddItem = () => {
         const newItemList = [...itemList, []]
@@ -29,7 +30,7 @@ function ItemList({setItemList, itemList}) {
                 {
                     itemList.map((item, i) => {
                         return(
-                            <NewItem key={i} onDelete={() => handleItemDelete(i)} onChange={(value) => handleItemChange(value, i)}/>
+                            <NewItem item={item} key={i} onDelete={() => handleItemDelete(i)} onChange={(value) => handleItemChange(value, i)}/>
                         )
                     })
                 }

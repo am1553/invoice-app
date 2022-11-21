@@ -34,10 +34,10 @@ export const PurpleButton = ({text, onClick}) => {
     )
 }
 
-export const GreyButton = ({text}) => {
+export const GreyButton = ({text, onClick}) => {
     const theme = useContext(ThemeContext)[0]
     return(
-        <button className={`h-12 px-6 rounded-full transition-colors ${theme === "light" ? "bg-[#373B53] hover:bg-[#0C0E16] text-[#888EB0]" : "bg-[#373B53] text-[#DFE3FA] hover:bg-[#1E2139]"}`}>
+        <button onClick={onClick} className={`h-12 px-6 rounded-full transition-colors ${theme === "light" ? "bg-[#373B53] hover:bg-[#0C0E16] text-[#888EB0]" : "bg-[#373B53] text-[#DFE3FA] hover:bg-[#1E2139]"}`}>
             <h4 className='text-h4 font-bold'>{text}</h4>
         </button>
     )

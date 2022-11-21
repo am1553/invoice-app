@@ -7,10 +7,10 @@ import CalendarIcon from '../../assets/icon-calendar.svg'
 
 
 
-export const DateDropDown = ({label, onChange}) => {
+export const DateDropDown = ({label, onChange, defaultValue}) => {
+
     const theme = useContext(ThemeContext)[0]
     const [startDate, setStartDate] = useState(new Date())
-
     useEffect(() => {
         onChange(startDate)
     }, [startDate])

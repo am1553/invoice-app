@@ -3,7 +3,7 @@ import { ThemeContext } from "./context/ThemeContext";
 import Header from "./layouts/Header";
 import Home from "./pages/Home/Home";
 import NewInvoice from "./pages/NewInvoice/NewInvoice";
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { InvoicesProvider } from "./context/InvoicesContext";
 import ViewInvoice from "./pages/ViewInvoice/ViewInvoice";
 import EditInvoice from "./pages/EditInvoice/EditInvoice";
@@ -14,7 +14,7 @@ function App() {
   return (
     <InvoicesProvider>
         <div className={`App md:h-screen md:overflow-hidden md:flex ${theme === "light" ? "bg-desaturated-white text-grey" : "bg-desaturated-black text-desaturated-grey"}`}>
-          <Router>
+          <Router hashType='hashbang'>
             <Header />
               <Routes>
                 <Route path="/" exact element={<Home />}/>

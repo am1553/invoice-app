@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-import { collection, getDocs, getDoc, addDoc, setDoc, doc, deleteDoc } from 'firebase/firestore'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase-config'
 
 export const InvoicesContext = createContext()
@@ -14,13 +14,11 @@ export const InvoicesProvider = ({children}) => {
         const data = await getDocs(invoicesCollectionRef)
         setAllInvoices(data.docs.map(doc => ({...doc.data(), collection_id: doc.id})))
     }
-
     useEffect(() => {
         getInvoices()
     }, [])
 
     // get single invoice
-
     const getInvoice = (collection_id) => {
         return allInvoices.filter(invoice => invoice.collection_id === collection_id)
     }
@@ -32,12 +30,19 @@ export const InvoicesProvider = ({children}) => {
     }
 
     // update invoice
-    const updateInvoice = () => {
+    const updateInvoice = async (collection_id, data) => {
+        const invoiceDoc = doc(db, "invoices", collection_id)
+        await updateDoc(invoiceDoc, data)
+    }
 
+    // mark as paid
+    const markAsPaid = async (collection_id) => {
+        const invoiceDoc = doc(db, "invoices", collection_id)
+        const paid = {status: "paid"}
+        await updateDoc(invoiceDoc, paid)
     }
 
     // delete invoice
-
     const deleteInvoice = async (collection_id) => {
         const invoiceDoc = doc(db, "invoices", collection_id)
         await deleteDoc(invoiceDoc)
@@ -51,7 +56,9 @@ export const InvoicesProvider = ({children}) => {
                     create_invoice: createInvoice, 
                     get_invoice: getInvoice,
                     get_invoices: getInvoices,
-                    delete_invoice: deleteInvoice
+                    delete_invoice: deleteInvoice,
+                    mark_as_paid: markAsPaid,
+                    update_invoice: updateInvoice
                 }
             }
         >

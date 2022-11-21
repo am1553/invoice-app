@@ -7,10 +7,10 @@ import { PurpleButton, GreyButton, SmallButton } from '../../components/ui/Butto
 import {useNavigate} from 'react-router-dom'
 import { ThemeContext } from '../../context/ThemeContext';
 import { InvoicesContext } from '../../context/InvoicesContext';
-import {Timestamp} from 'firebase/firestore'
 
 function NewInvoice({onClose}) {
     const theme = useContext(ThemeContext)[0]
+    let navigate = useNavigate()
     const create_invoice = useContext(InvoicesContext).create_invoice
     
     function makeid(length) {
@@ -23,12 +23,11 @@ function NewInvoice({onClose}) {
         return result;
     }
     
-    let navigate = useNavigate()
     const [billFrom, setBillFrom] = useState({})
     const [billTo, setBillTo] = useState({})
     const [itemList, setItemList] = useState([])
     
-    const handleAddInvoice = () => {
+    const handleAddInvoiceDraft = () => {
         const calcTotal = () => {
             let total = 0;
             itemList.map(item => total = total + item.total)
@@ -54,6 +53,38 @@ function NewInvoice({onClose}) {
             total: calcTotal()
         }
         create_invoice(data)
+        const navigateBack = () => navigate('/')
+        navigateBack()
+        onClose()
+    }
+    const handleAddInvoicePending = () => {
+        const calcTotal = () => {
+            let total = 0;
+            itemList.map(item => total = total + item.total)
+            return total
+        }
+        const data = {
+            client_address: {
+                city: billTo.city,
+                country: billTo.country,
+                post_code: billTo.post_code,
+                street: billTo.street_address
+            },
+            created_at: new Date(),
+            payment_due: billTo.invoice_date,
+            payment_terms: billTo.payment_terms,
+            sender_address: {...billFrom},
+            client_email: billTo.client_email,
+            client_name: billTo.client_name,
+            description: billTo.project_description,
+            id: makeid(6),
+            items: itemList,
+            status: "pending",
+            total: calcTotal()
+        }
+        create_invoice(data)
+        const navigateBack = () => navigate('/')
+        navigateBack()
         onClose()
     }
 
@@ -76,10 +107,10 @@ function NewInvoice({onClose}) {
             </main>
 
             <footer className={`p-6 justify-between mt-14 flex gap-2 shadow-[10px_30px_40px_20px_#00000050] ${theme === "light" ? "bg-white" : "bg-[#1E2139]"}`}>
-                <SmallButton text={"Discard"}/>
+                <SmallButton text={"Discard"} onClick={() => {navigate('/'); onClose()}}/>
                 <div className="flex gap-4">
-                    <GreyButton text={"Save as Draft"}/>
-                    <PurpleButton text={"Save & Send"} onClick={handleAddInvoice} />
+                    <GreyButton text={"Save as Draft"} onClick={handleAddInvoiceDraft}/>
+                    <PurpleButton text={"Save & Send"}  onClick={handleAddInvoicePending}/>
                 </div>
             </footer>
         </div>

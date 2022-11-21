@@ -43,10 +43,10 @@ export const GreyButton = ({text, onClick}) => {
     )
 }
 
-export const SmallButton = ({text}) => {
+export const SmallButton = ({text, onClick}) => {
     const theme = useContext(ThemeContext)[0]
     return(
-        <button className={`h-12 px-6 rounded-full transition-colors ${theme === "light" ? "bg-desaturated-white hover:bg-sky-blue hover:bg-opacity-50 text-sky-blue" : "bg-greyish-blue text-desaturated-grey hover:bg-opacity-0"}`}>
+        <button onClick={onClick} className={`h-12 px-6 rounded-full transition-colors ${theme === "light" ? "bg-desaturated-white hover:bg-sky-blue hover:bg-opacity-50 text-sky-blue" : "bg-greyish-blue text-desaturated-grey hover:bg-opacity-0"}`}>
             <h4 className='text-h4 font-bold'>{text}</h4>
         </button>
     )

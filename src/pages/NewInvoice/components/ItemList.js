@@ -18,7 +18,6 @@ function ItemList({setItemList, itemList}) {
     const handleItemDelete = (i) => {
         const itemData = [...itemList]
         itemData.splice(i, 1)
-        console.log(itemData)
         setItemList(itemData)
     }
     

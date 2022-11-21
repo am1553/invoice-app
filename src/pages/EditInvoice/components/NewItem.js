@@ -6,7 +6,6 @@ import BinIcon from '../../../assets/icon-delete.svg'
 
 
 function NewItem({onChange, onDelete, item}) {
-    console.log(item)
     const [itemName, setItemName] = useState(item.item_name)
     const [quantity, setQuantity] = useState(item.quantity)
     const [price, setPrice] = useState(item.price)

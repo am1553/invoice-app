@@ -7,7 +7,7 @@ import { PurpleButton, GreyButton, SmallButton } from '../../components/ui/Butto
 import {useNavigate} from 'react-router-dom'
 import { ThemeContext } from '../../context/ThemeContext';
 import { InvoicesContext } from '../../context/InvoicesContext';
-
+import {Timestamp} from 'firebase/firestore'
 
 function NewInvoice({onClose}) {
     const theme = useContext(ThemeContext)[0]
@@ -41,6 +41,7 @@ function NewInvoice({onClose}) {
                 post_code: billTo.post_code,
                 street: billTo.street_address
             },
+            created_at: new Date(),
             payment_due: billTo.invoice_date,
             payment_terms: billTo.payment_terms,
             sender_address: {...billFrom},

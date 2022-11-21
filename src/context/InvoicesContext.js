@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
-import { collection, getDocs, getDoc, addDoc, setDoc, doc } from 'firebase/firestore'
+import { collection, getDocs, getDoc, addDoc, setDoc, doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase-config'
-import { useParams } from 'react-router-dom'
 
 export const InvoicesContext = createContext()
 
@@ -9,13 +8,13 @@ export const InvoicesProvider = ({children}) => {
 
     const invoicesCollectionRef = collection(db, "invoices")
     const [allInvoices, setAllInvoices] = useState([])
-    const [invoice, setInvoice] = useState(null)
 
     // get all invoices
     const getInvoices = async () => {
         const data = await getDocs(invoicesCollectionRef)
         setAllInvoices(data.docs.map(doc => ({...doc.data(), collection_id: doc.id})))
     }
+
     useEffect(() => {
         getInvoices()
     }, [])
@@ -25,7 +24,6 @@ export const InvoicesProvider = ({children}) => {
     const getInvoice = (collection_id) => {
         return allInvoices.filter(invoice => invoice.collection_id === collection_id)
     }
-
 
     // create an invoice
     const createInvoice = async (data) => {
@@ -40,8 +38,23 @@ export const InvoicesProvider = ({children}) => {
 
     // delete invoice
 
+    const deleteInvoice = async (collection_id) => {
+        const invoiceDoc = doc(db, "invoices", collection_id)
+        await deleteDoc(invoiceDoc)
+    }
+
     return(
-        <InvoicesContext.Provider value={{all_invoices: allInvoices, create_invoice: createInvoice, get_invoice: getInvoice}}>
+        <InvoicesContext.Provider 
+            value={
+                {
+                    all_invoices: allInvoices, 
+                    create_invoice: createInvoice, 
+                    get_invoice: getInvoice,
+                    get_invoices: getInvoices,
+                    delete_invoice: deleteInvoice
+                }
+            }
+        >
             {children}
         </InvoicesContext.Provider>
     )

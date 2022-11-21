@@ -19,8 +19,8 @@ function App() {
               <Routes>
                 <Route path="/" exact element={<Home />}/>
                 <Route path="/new-invoice" exact element={<NewInvoice />}/>
-                <Route path="/invoice/:id" element={<ViewInvoice />}/>
-                <Route path="/edit-invoice" element={<EditInvoice />}/>
+                <Route path="/invoice/:collection_id" element={<ViewInvoice />}/>
+                <Route path="/invoice/:collection_id/edit" element={<EditInvoice />}/>
               </Routes>
           </Router>
         </div>

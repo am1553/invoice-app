@@ -3,10 +3,11 @@ import React, { useContext } from 'react'
 import { ThemeContext } from '../../../context/ThemeContext'
 
 function ClientDetails({invoice}) {
+
     const theme = useContext(ThemeContext)[0]
     const convertDueDate = new Date(invoice.payment_due.seconds * 1000 + invoice.payment_due.nanoseconds/1000000)
+    console.log(convertDueDate)
     const convertInvoiceDate = new Date(invoice.created_at.seconds * 1000 + invoice.payment_due.nanoseconds/1000000)
-    
     const dueDate = moment(convertDueDate).format("MMM Do YYYY")
     const createdAt = moment(convertInvoiceDate).format("MMM Do YYYY")
 

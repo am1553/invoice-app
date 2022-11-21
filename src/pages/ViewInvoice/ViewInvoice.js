@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { InvoicesContext } from '../../context/InvoicesContext'
 import ArrowLeft from '../../assets/icon-arrow-left.svg'
@@ -6,14 +6,16 @@ import StatusCard from './components/StatusCard'
 import InvoiceDetails from './components/InvoiceDetails'
 import ActionButtons from './components/ActionButtons'
 import { ThemeContext } from '../../context/ThemeContext'
+
 function ViewInvoice() {
+
     const theme = useContext(ThemeContext)[0]
-    const id = useParams().id
-    const invoice = useContext(InvoicesContext).get_invoice(id)[0]
+    const collection_id = useParams().collection_id
+    const invoice = useContext(InvoicesContext).get_invoice(collection_id)[0]
     const navigate = useNavigate()
 
   return (
-    invoice ? 
+    invoice  ? 
     <div className='max-w-4xl pt-14 h-full w-full flex flex-col gap-14 lg:mx-auto'>
         
         <header className='px-4'>
